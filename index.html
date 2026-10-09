@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<link rel="icon" type="image/png" href="IMG_4249.jpeg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CiberFem Revolution — Mujeres que construyen la tecnología</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #08050f;
+    --bg-soft: #0e0a1c;
+    --purple-deep: #3a2a6b;
+    --purple-mid: #7c5ac2;
+    --pink: #d97fb0;
+    --lavender: #c9b8ea;
+    --ink: #f1ecf9;
+    --ink-dim: #a89fc2;
+    --line: rgba(201,184,234,0.18);
+    --max: 1100px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Sora', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* background circuit texture */
+  .circuit-bg{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    opacity:0.35;
+    background:
+      radial-gradient(ellipse 60% 50% at 15% 20%, rgba(124,90,194,0.18), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 85% 75%, rgba(217,127,176,0.13), transparent 60%);
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(8,5,15,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:74px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Fraunces', serif;
+    font-size:1.25rem;
+    font-weight:600;
+    text-decoration:none;
+  }
+  .brand img{height:34px;width:auto;display:block;}
+  .navlinks{
+    display:flex;
+    gap:34px;
+    list-style:none;
+  }
+  .navlinks a{
+    text-decoration:none;
+    font-size:0.92rem;
+    color:var(--ink-dim);
+    transition:color 0.2s ease;
+    position:relative;
+  }
+  .navlinks a:hover, .navlinks a:focus-visible{color:var(--lavender);}
+  .navlinks a:focus-visible{outline:2px solid var(--pink); outline-offset:4px; border-radius:2px;}
+  .navtoggle{display:none;}
+
+  @media (max-width:760px){
+    .navlinks{
+      position:fixed;
+      top:74px; left:0; right:0;
+      background:var(--bg-soft);
+      flex-direction:column;
+      gap:0;
+      border-bottom:1px solid var(--line);
+      max-height:0;
+      overflow:hidden;
+      transition:max-height 0.3s ease;
+    }
+    .navlinks.open{max-height:320px;}
+    .navlinks a{
+      padding:16px 32px;
+      display:block;
+      border-top:1px solid var(--line);
+    }
+    .navtoggle{
+      display:block;
+      background:none;
+      border:1px solid var(--line);
+      color:var(--ink);
+      width:40px;height:40px;
+      border-radius:2px;
+      font-size:1.1rem;
+      cursor:pointer;
+    }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    z-index:1;
+    padding:96px 0 110px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero-eyebrow{
+    font-size:0.95rem;
+    color:var(--pink);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.08;
+    max-width:16ch;
+  }
+  .hero h1 em{
+    font-style:italic;
+    background:linear-gradient(100deg, var(--pink), var(--purple-mid));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.lead{
+    margin-top:26px;
+    max-width:52ch;
+    color:var(--ink-dim);
+    font-size:1.08rem;
+  }
+  .hero-actions{
+    margin-top:38px;
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding:14px 26px;
+    font-family:'Sora',sans-serif;
+    font-size:0.95rem;
+    text-decoration:none;
+    border-radius:2px;
+    transition:transform 0.2s ease, opacity 0.2s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(100deg, var(--purple-mid), var(--pink));
+    color:#0b0714;
+    font-weight:600;
+  }
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--ink);
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn:focus-visible{outline:2px solid var(--pink); outline-offset:3px;}
+
+  .hero-logo{
+    position:relative;
+    display:flex;
+    justify-content:center;
+  }
+  .hero-logo img{
+    width:100%;
+    max-width:420px;
+    filter:drop-shadow(0 0 60px rgba(124,90,194,0.35));
+  }
+
+  @media (max-width:820px){
+    .hero-grid{grid-template-columns:1fr; text-align:left;}
+    .hero-logo{order:-1; max-width:260px; margin:0 auto 12px;}
+    .hero-logo img{max-width:220px;}
+  }
+
+  /* ---------- SECTION shared ---------- */
+  section{
+    position:relative;
+    z-index:1;
+    padding:100px 0;
+    border-top:1px solid var(--line);
+  }
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .section-head .kicker{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--pink);
+    font-size:0.98rem;
+    margin-bottom:12px;
+  }
+  .section-head h2{
+    font-size:clamp(1.9rem, 3.4vw, 2.6rem);
+  }
+  .section-head p{
+    margin-top:16px;
+    color:var(--ink-dim);
+    max-width:56ch;
+  }
+
+  /* ---------- INICIO: circuit timeline ---------- */
+  .timeline{
+    position:relative;
+    padding-left:38px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:7px; top:6px; bottom:6px;
+    width:2px;
+    background:linear-gradient(180deg, var(--pink), var(--purple-mid), var(--purple-deep));
+  }
+  .tl-item{
+    position:relative;
+    padding-bottom:52px;
+  }
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    left:-38px; top:4px;
+    width:16px; height:16px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--pink);
+  }
+  .tl-item h3{
+    font-size:1.3rem;
+    margin-bottom:8px;
+  }
+  .tl-item .tl-tag{
+    display:inline-block;
+    font-size:0.8rem;
+    color:var(--lavender);
+    border:1px solid var(--line);
+    padding:3px 10px;
+    border-radius:2px;
+    margin-bottom:10px;
+  }
+  .tl-item p{color:var(--ink-dim); max-width:60ch;}
+
+  /* ---------- topic sections (Informática / Programación) ---------- */
+  .topic-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+  }
+  .topic-grid p{color:var(--ink-dim); margin-bottom:18px;}
+  .checklist{list-style:none;}
+  .checklist li{
+    padding:14px 0;
+    border-top:1px solid var(--line);
+    display:flex;
+    gap:14px;
+    align-items:baseline;
+  }
+  .checklist li:last-child{border-bottom:1px solid var(--line);}
+  .checklist .dot{
+    width:8px;height:8px;
+    border-radius:50%;
+    background:var(--purple-mid);
+    flex:none;
+    margin-top:6px;
+  }
+  .checklist strong{display:block; color:var(--ink); font-weight:600; margin-bottom:2px;}
+  .checklist span{color:var(--ink-dim); font-size:0.92rem;}
+
+  /* ---------- cajas de historia (editables) ---------- */
+  .story-box{
+    border:1px solid var(--line);
+    padding:38px;
+    border-radius:2px;
+    max-width:720px;
+  }
+  .story-box + .story-box{margin-top:24px;}
+  .story-box .story-tag{
+    display:inline-block;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--pink);
+    font-size:0.9rem;
+    margin-bottom:14px;
+  }
+  .story-box h3{font-size:1.3rem; margin-bottom:12px;}
+  .story-box p{color:var(--ink-dim);}
+  .story-box p.placeholder{opacity:0.55; font-style:italic;}
+
+  @media (max-width:820px){
+    .topic-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Ciberseguridad: shield accent ---------- */
+  .shield-block{
+    display:grid;
+    grid-template-columns:0.7fr 1.3fr;
+    gap:48px;
+    align-items:start;
+  }
+  .shield-visual{
+    display:flex;
+    justify-content:center;
+    padding-top:8px;
+  }
+  .shield-visual svg{width:150px; height:auto;}
+  @media (max-width:820px){
+    .shield-block{grid-template-columns:1fr;}
+    .shield-visual{order:-1;}
+  }
+
+  .pillars{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    margin-top:8px;
+  }
+  .pillar{
+    border:1px solid var(--line);
+    padding:22px;
+    border-radius:2px;
+  }
+  .pillar h4{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.05rem;
+    margin-bottom:8px;
+  }
+  .pillar p{color:var(--ink-dim); font-size:0.92rem;}
+  @media (max-width:760px){.pillars{grid-template-columns:1fr;}}
+
+  /* ---------- PODCASTS ---------- */
+  .podcast-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:2px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .podcast-card{
+    background:var(--bg);
+    padding:32px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    text-decoration:none;
+    transition:background 0.2s ease;
+  }
+  .podcast-card:hover, .podcast-card:focus-visible{background:var(--bg-soft);}
+  .podcast-card:focus-visible{outline:2px solid var(--pink); outline-offset:-4px;}
+  .podcast-card h3{font-size:1.15rem;}
+  .podcast-card .pc-meta{
+    font-size:0.82rem;
+    color:var(--pink);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+  }
+  .podcast-card p{color:var(--ink-dim); font-size:0.92rem; flex:1;}
+  .podcast-card .pc-link{
+    font-size:0.88rem;
+    color:var(--lavender);
+    border-top:1px solid var(--line);
+    padding-top:12px;
+  }
+  @media (max-width:700px){.podcast-grid{grid-template-columns:1fr;}}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{
+    position:relative;
+    z-index:1;
+    border-top:1px solid var(--line);
+    padding:90px 0 40px;
+  }
+  .contact-block{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:22px;
+  }
+  .contact-block h2{
+    font-size:clamp(1.8rem, 4vw, 2.6rem);
+    max-width:14ch;
+  }
+  .contact-email{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.5rem;
+    background:linear-gradient(100deg, var(--pink), var(--purple-mid));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-decoration:none;
+  }
+  .contact-note{color:var(--ink-dim); max-width:50ch; font-size:0.94rem;}
+  .foot-bottom{
+    margin-top:70px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:0.82rem;
+    color:var(--ink-dim);
+  }
+</style>
+</head>
+<body>
+
+<div class="circuit-bg" aria-hidden="true"></div>
+
+<header>
+  <nav class="wrap">
+    <a href="#inicio" class="brand">
+      <img src="IMG_4249.jpeg" alt="Logotipo de CiberWoman">
+      CiberFem Revolution
+    </a>
+    <button class="navtoggle" id="navToggle" aria-expanded="false" aria-controls="navlinks">☰</button>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#informatica">Informática</a></li>
+      <li><a href="#programacion">Programación</a></li>
+      <li><a href="#ciberseguridad">Ciberseguridad</a></li>
+      <li><a href="#podcasts">Podcasts</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ INICIO ============ -->
+  <section id="inicio" class="hero" style="border-top:none;">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="hero-eyebrow">Una asociación de mujeres en tecnología</p>
+        <h1>Cada línea de código empieza <em>en algún lugar</em></h1>
+        <p class="lead">CiberFem Revolution nace en Jerez de la Frontera para reunir y dar voz a las historias de mujeres del sector tecnológico: desde el primer "hola mundo" hasta los puestos de dirección técnica, la investigación en ciberseguridad o la arquitectura de sistemas complejos. Queremos que quien llega ahora vea el camino completo, no solo la meta.</p>
+        <div class="hero-actions">
+          <a href="#podcasts" class="btn btn-primary">Escuchar sus historias</a>
+          <a href="#ciberseguridad" class="btn btn-ghost">Conocer las áreas</a>
+        </div>
+      </div>
+      <div class="hero-logo">
+        <img src="IMG_4249.jpeg" alt="Ilustración del logo de CiberWoman: perfil femenino del que nace un escudo con líneas de circuito">
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="mision-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Nuestra misión</p>
+        <h2 id="mision-heading">De los primeros pasos a los logros más técnicos</h2>
+        <p>No hay un único camino hacia la tecnología. Por eso organizamos el recorrido de nuestras socias como una línea de tiempo abierta: cada nodo es una historia real, en cualquier punto del trayecto.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-tag">Comienzos</span>
+          <h3>El primer acercamiento</h3>
+          <p>Cursos de iniciación, un ciclo formativo, una asignatura que despertó la curiosidad o un cambio de carrera después de los treinta. Documentamos cómo empezaron, sin filtros ni idealización.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-tag">Formación y comunidad</span>
+          <h3>Aprender acompañadas</h3>
+          <p>Grupos de estudio, mentorías entre socias y recursos compartidos para sostener el aprendizaje en informática, programación y ciberseguridad más allá del aula.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-tag">Desarrollo profesional</span>
+          <h3>Entrar en el sector</h3>
+          <p>Primeras prácticas, primer contrato, primer proyecto en producción. Historias sobre entrevistas técnicas, síndrome del impostor y cómo se supera.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-tag">Logros avanzados</span>
+          <h3>Liderazgo técnico</h3>
+          <p>Investigadoras en ciberseguridad, arquitectas de software, líderes de equipo y ponentes en congresos internacionales. El punto de llegada que queremos hacer visible.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INFORMÁTICA ============ -->
+  <section id="informatica" aria-labelledby="info-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Área 01</p>
+        <h2 id="info-heading">Informática</h2>
+        <p>La base sobre la que se construye todo lo demás: cómo funcionan los sistemas, las redes y las máquinas que usamos cada día.</p>
+      </div>
+      
+      <div class="story-box">
+        <span class="story-tag">Historia</span>
+        <h3>Historia de Blanca Huergo Muñoz</h3>
+        <p class="placeholder">Blanca Huergo Muñoz completó un doble grado de Matemáticas y Ciencias de la Computación en la Universidad de Oxford (2020-2023), una de las instituciones más prestigiosas del mundo. Durante su etapa escolar, hizo historia al convertirse en la primera mujer en ganar una medalla de oro en la Olimpiada Informática Española (OIE), lo que le permitió representar a España en la Olimpiada Informática Internacional (IOI 2020). Además de destacar académicamente con reconocimientos como la Google Generation Scholarship, aprovechó sus conocimientos para cofundar la Olimpiada Informática Femenina (OIFem), impulsando y entrenando a jóvenes estudiantes para reducir la brecha de género en la programación competitiva a nivel europeo</p>
+      </div>
+
+      <div class="story-box">
+        <span class="story-tag">Historia</span>
+        <h3>Historia de Irene Díaz</h3>
+        <p class="placeholder"> Es una respetada científica, investigadora y docente vinculada al Departamento de Informática de la Universidad de Oviedo. Su mayor logro ha sido liderar e integrar equipos de investigación pioneros en bioinformática, logrando aplicar metodologías avanzadas de inteligencia artificial y machine learning para descifrar cómo interactúa la microbiota humana con diversos nutrientes, un hito que abre nuevas puertas en la lucha y tratamiento de trastornos metabólicos como la obesidad</p>
+      </div>
+
+
+
+    </div>
+  </section>
+
+  <!-- ============ PROGRAMACIÓN ============ -->
+  <section id="programacion" aria-labelledby="prog-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Área 02</p>
+        <h2 id="prog-heading">Programación</h2>
+        <p>De la primera función a la arquitectura de un producto completo. Espacio para aprender, practicar y mostrar lo que se construye.</p>
+      </div>
+      <!-- ✍️ Escribe aquí la historia de esta sección. Duplica todo el bloque <div class="story-box">...</div> si quieres añadir más de una historia. -->
+      <div class="story-box">
+        <span class="story-tag">Historia</span>
+        <h3>Historia de Azahara Fernández Guizán</h3>
+        <p class="placeholder">Azahara Fernández Guizán es una destacada desarrolladora de software sénior, divulgadora y Doctora en Inmunología por la Universidad de Oviedo que ha logrado fusionar con éxito la ciencia y la tecnología. Sus mayores logros incluyen haber sido galardonada internacionalmente como Microsoft MVP (Most Valuable Professional) en la categoría de tecnologías de desarrollo durante dos periodos consecutivos, consolidarse como una experta en desarrollo frontend y Angular dentro de la tecnológica Sngular, y mantener un fuerte compromiso social a través de la creación de la newsletter Azi Science and Tech y su participación activa en comunidades tecnológicas de código abierto</p>
+      </div>
+
+      <div class="story-box">
+        <span class="story-tag">Historia</span>
+        <h3>Historia de Sandra Cabello</h3>
+        <p class="placeholder"> Es una experimentada programadora, diseñadora de producto e ingeniera de diseño especializada en el desarrollo frontend con Vue3 y JavaScript. Su mayor logro ha sido la creación y arquitectura integral de Qurseo, un software de tipo SaaS diseñado para optimizar y producir contenidos formativos en entornos digitales, además de destacar como autora de dos libros técnicos sobre desarrollo web</p>
+      </div>
+
+      <div class="story-box">
+        <span class="story-tag">Historia</span>
+        <h3>Historia de Shaila Pérez Fernández</h3>
+        <p class="placeholder"> Es una profesional asturiana con una formación multidisciplinar que compagina su faceta como aparejadora con el sector tecnológico, desempeñándose como analista programadora. Su mayor logro radica en su versatilidad para fusionar el ámbito técnico de la edificación y la arquitectura con el desarrollo de software, destacando además por su activa visibilización del TDAH en entornos profesionales y su participación en certámenes y proyectos de reforma arquitectónica</p>
+      </div>
+
+
+    </div>
+    </div>
+  </section>
+
+  <!-- ============ CIBERSEGURIDAD ============ -->
+  <section id="ciberseguridad" aria-labelledby="ciber-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Área 03</p>
+        <h2 id="ciber-heading">Ciberseguridad</h2>
+        <p>Proteger lo que se construye. Analistas, investigadoras y responsables de seguridad comparten su forma de pensar como atacante para defender mejor.</p>
+      </div>
+      <div class="shield-block">
+        <div class="shield-visual">
+          <svg viewBox="0 0 200 230" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="shieldGrad" x1="0" y1="0" x2="200" y2="230" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#d97fb0"/>
+                <stop offset="1" stop-color="#7c5ac2"/>
+              </linearGradient>
+            </defs>
+            <path d="M100 6 L188 46 V120 C188 168 150 202 100 224 C50 202 12 168 12 120 V46 Z" stroke="url(#shieldGrad)" stroke-width="5" fill="none"/>
+            <circle cx="60" cy="70" r="5" stroke="url(#shieldGrad)" stroke-width="3" fill="#08050f"/>
+            <path d="M65 70 H100 M100 70 L118 88 V110" stroke="url(#shieldGrad)" stroke-width="3" fill="none"/>
+            <circle cx="55" cy="130" r="5" stroke="url(#shieldGrad)" stroke-width="3" fill="#08050f"/>
+            <path d="M60 130 H90 L106 146" stroke="url(#shieldGrad)" stroke-width="3" fill="none"/>
+          </svg>
+        </div>
+        <div>
+          <!-- ✍️ Escribe aquí la historia de esta sección. Duplica todo el bloque <div class="story-box">...</div> si quieres añadir más de una historia. -->
+          <div class="story-box">
+            <span class="story-tag">Historia</span>
+            <h3>Historia de Yaiza Rubio Viñuela</h3>
+            <p class="placeholder"> Es una de las analistas de ciberinteligencia y expertas en tecnología más influyentes de España, actualmente consolidada como la directora de Metaverso en Telefónica. Marcó un hito histórico al convertirse en la primera mujer española en impartir conferencias en DefCON y BlackHat (las citas de ciberseguridad más importantes del mundo), y ha sido condecorada con la Cruz del Mérito con distintivo blanco por la Guardia Civil por sus aportaciones al sector</p>
+          </div>
+
+
+           <div class="story-box">
+            <span class="story-tag">Historia</span>
+            <h3>Historia de Lola Rebollo Revesado</h3>
+            <p class="placeholder">  Es ingeniera electrónica experta en semiconductores y alta gestión que actualmente ejerce como Directora del Sector Público en la tecnológica Cloudera. Sus mayores logros incluyen haber sido la Subdirectora de Impulso a la Industria y Talento en el Instituto Nacional de Ciberseguridad (INCIBE), asesora de la Moncloa para la iniciativa España Nación Emprendedora y galardonada con la Medalla al Mérito en Ciberdefensa por su impacto en el ecosistema digital español</p>
+          </div>
+
+           <div class="story-box">
+            <span class="story-tag">Historia</span>
+            <h3>Historia de Ana Almazor</h3>
+            <p class="placeholder"> Es una destacada profesional de la consultoría y la ingeniería tecnológica que enfoca su actividad en el desarrollo y la implementación de soluciones críticas para el tejido empresarial. Su mayor logro reside en su capacidad para liderar proyectos de transformación digital y optimización de procesos complejos, ayudando activamente a cerrar la brecha digital en el sector corporativo y promoviendo la inclusión de talento femenino en áreas STEM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PODCASTS ============ -->
+  <section id="podcasts" aria-labelledby="pod-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Escuchar</p>
+        <h2 id="pod-heading">Podcasts</h2>
+        <p>Una selección de podcasts que ponen voz a mujeres de la tecnología y la ciberseguridad. Iremos ampliando esta lista con recomendaciones de la comunidad.</p>
+      </div>
+      <div class="podcast-grid">
+        
+        <a class="podcast-card" href="https://youtu.be/c9Gz_61EoUs?si=ObH0VZ89iFlu21z9" target="_blank" rel="noopener">
+          <span class="pc-meta">Podcast</span>
+          <h3>Sonia y la Ingieniería Informática</h3>
+          <span class="pc-link">Ver vídeo</span>
+        </a>
+
+           <a class="podcast-card" href="https://youtu.be/k83HaLIardo?si=43-7r_zPzmswN7Bi" target="_blank" rel="noopener">
+          <span class="pc-meta">Podcast</span>
+          <h3>Cristina y la Ingieniería Informática</h3>
+          <span class="pc-link">Ver vídeo</span>
+        </a>
+
+         <a class="podcast-card" href="https://youtu.be/ogISmsTyZQU?si=O4R6NuMSklIi78Q-" target="_blank" rel="noopener">
+          <span class="pc-meta">Podcast</span>
+          <h3>Arcanita y las mujeres en la informática</h3>
+          <span class="pc-link">Ver vídeo</span>
+        </a>
+      
+        <a class="podcast-card" href="https://youtu.be/k4DXYP7jxJA?si=q22tj2grG_8Kw6YB" target="_blank" rel="noopener">
+          <span class="pc-meta">Podcast</span>
+          <h3>Lidia Fernández y la Ciberseguridad</h3>
+          <span class="pc-link">Ver vídeo</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="contact-block">
+      <h2>Cuéntanos tu historia</h2>
+      <p class="contact-note">Si formas parte del sector tecnológico y quieres compartir tu trayectoria, colaborar con la asociación o simplemente saber más sobre CiberWoman, escríbenos.</p>
+      <a class="contact-email" href="mailto:contactociberwoman@gmail.com">contactociberwoman@gmail.com </a>
+      <p>'Este correo fue crerado sin la intención de suplantar a ninguna identidad de nadie, y es el que se puede mantener de momento'</p>
+    </div>
+    <div class="foot-bottom wrap" style="padding:0;">
+      <span>CiberFem Revolution — asociación de mujeres en tecnología</span>
+      <span>Jerez de la Frontera</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => {
+    const isOpen = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
